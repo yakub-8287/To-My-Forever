@@ -205,51 +205,52 @@
             transition: 2s ease;
         }
 
+        /* Heartbeat Navigation */
         .heart-nav {
             position: fixed;
             bottom: 40px;
             left: 50%;
-            transform: translateX(-50%) scale(0);
+            transform: translateX(-50%) scale(0); /* Start hidden and small */
             font-size: 4rem;
             cursor: pointer;
             z-index: 1001;
-            opacity: 0;
-            transition: opacity 1.5s ease, transform 1.5s ease;
-            color: #d8b4fe;
+            opacity: 0; /* Smooth fade ke liye */
+            transition: opacity 1.5s ease, transform 1.5s ease; /* Smooth entry */
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            
+            /* Light Purple Color */
+            color: #d8b4fe; 
             filter: drop-shadow(0 0 15px rgba(216, 180, 254, 0.6));
         }
 
         .heart-nav.show {
             opacity: 1;
-            transform: translateX(-50%) scale(1);
+            transform: translateX(-50%) scale(1); /* Smoothly pops up */
+            display: block; /* Backup */
         }
 
+        /* Beat animation tabhi start hogi jab 'active' class aayegi */
         .heart-nav.active {
             animation: heartbeat 1.4s ease-in-out infinite;
         }
 
         @keyframes heartbeat {
-            0% {
-                transform: translateX(-50%) scale(1);
-            }
-
-            15% {
-                transform: translateX(-50%) scale(1.1);
-            }
-
-            30% {
-                transform: translateX(-50%) scale(1);
-            }
-
-            45% {
-                transform: translateX(-50%) scale(1.2);
-            }
-
-            70% {
-                transform: translateX(-50%) scale(1);
-            }
+            0% { transform: translateX(-50%) scale(1); }
+            15% { transform: translateX(-50%) scale(1.1); }
+            30% { transform: translateX(-50%) scale(1); }
+            45% { transform: translateX(-50%) scale(1.2); }
+            70% { transform: translateX(-50%) scale(1); }
         }
 
+        /* Glossy Effect on Heart */
+        .heart-nav::after {
+            content: '❤️'; position: absolute; top: 0; left: 0;
+            animation: gloss 3s infinite; opacity: 0;
+        }
+        @keyframes gloss {
+            50% { opacity: 0.6; filter: brightness(2) blur(2px); }
+        }
         .cursor {
             display: inline-block;
             width: 2px;
